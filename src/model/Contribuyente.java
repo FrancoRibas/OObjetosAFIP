@@ -9,13 +9,14 @@ public class Contribuyente {
 	private char sexo;
 	private String cuil;
 
-	public Contribuyente(int idContribuyente, String apellido, String nombre, long dni, char sexo, String cuil) {
+	public Contribuyente(int idContribuyente, String apellido, String nombre, long dni, char sexo, String cuil)
+			throws Exception {
 		super();
 		this.idContribuyente = idContribuyente;
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.dni = dni;
-		this.sexo = sexo;
+		this.setSexo(sexo);
 		this.cuil = cuil;
 	}
 
@@ -55,8 +56,10 @@ public class Contribuyente {
 		return sexo;
 	}
 
-	public void setSexo(char sexo) {
-		this.sexo = sexo;
+	public void setSexo(char sexo) throws Exception {
+		if (validarSexo(sexo)) {
+			this.sexo = sexo;
+		}
 	}
 
 	public String getCuil() {
@@ -73,4 +76,22 @@ public class Contribuyente {
 				+ ", dni=" + dni + ", sexo=" + sexo + ", cuil=" + cuil + "]";
 	}
 
+	public boolean validarSexo(char sexo) throws Exception {
+		boolean esValido = false;
+		if (sexo == 'm' || sexo == 'f') {
+			esValido = true;
+		} else {
+			throw new Exception("ERROR: no es ni hombre ni mujer");
+		}
+		return esValido;
+	}
+	
+	public boolean validarCuil(long cuil)throws Exception{
+		boolean esValido=false;
+		
+		return esValido;
+	}
+	
+	
+	
 }
